@@ -11,6 +11,7 @@ void _div(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
+	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -19,12 +20,12 @@ void _div(stack_t **head, unsigned int num)
 	}
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't div, stack too short\n");
+		perror("L: can't div, stack too short\n");
 		exit(EXIT_FAILURE);
 	}
 	if ((*head)->n == 0)
 	{
-		dprintf(2, "L%u: division by zero\n", num);
+		perror("L: division by zero\n");
 		exit(EXIT_FAILURE);
 	}
 	temp = (*head)->next;
@@ -42,6 +43,7 @@ void _mul(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
+	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -51,7 +53,7 @@ void _mul(stack_t **head, unsigned int num)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't mul, stack too short\n", num);
+		perror("L: can't mul, stack too short\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -71,17 +73,18 @@ void _mod(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
+	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
 	{
-		dprintf(2, "L%u: can't mod, stack to short\n", num);
+		perror("L: can't mod, stack to short\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*head)->n == 0)
 	{
-		dprintf(2, "L%u: division by zero\n", num);
+		perror("L: division by zero\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -99,15 +102,16 @@ void _mod(stack_t **head, unsigned int num)
 
 void _pchar(stack_t **head, unsigned int num)
 {
+	(void)num;
 	if (*head == NULL)
 	{
-		dprintf(2, "L%u: can't pchar, stack empty\n", num);
+		perror("L: can't pchar, stack empty\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*head)->n < 0 || (*head)->n > 127)
 	{
-		dprintf(2, "L%u: can't pchar, value out of range\n", num);
+		perror("L: can't pchar, value out of range\n");
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", (*head)->n);

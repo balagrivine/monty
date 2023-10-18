@@ -1,9 +1,5 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
-#include <stdio.h>
-#ifdef _POSIX_C_SOURCE
-#define _GNU_SOURCE
-#include <stdio.h>
-#endif
 
 /**
  * start_var - initialize the global variables
@@ -13,6 +9,9 @@
 
 void start_var(FILE *fd)
 {
+	global_t var = {0};
+	(void)var;
+
 	var.lifo = 1;
 	var.cont = 1;
 	var.arg = NULL;
@@ -34,14 +33,14 @@ FILE *input(int argc, char *argv[])
 
 	if (argc == 1 || argc > 2)
 	{
-		dprintf(2, "USAGE: monty file\n");
+		perror("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
 
 	if (fd == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		perror("Error: Can't open file\n");
 		exit(EXIT_FAILURE);
 	}
 	return (fd);
@@ -56,6 +55,8 @@ FILE *input(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
+	global_t  var = {0};
+
 	void (*f)(stack_t **stack, unsigned int num);
 	FILE *file;
 	size_t size = 256;
@@ -66,7 +67,7 @@ int main(int argc, char *argv[])
 	start_var(file);
 	get_line = getline(&var.buffer, &size, file);
 
-	while (get_line != -1)
+	while (get_line != (size_t)EOF)
 	{
 		lines[0] = strtok(var.buffer, "\t\n");
 		if (lines[0] && lines[0][0] != '#')
@@ -74,8 +75,8 @@ int main(int argc, char *argv[])
 			f = get_opcode(lines[0]);
 			if (!f)
 			{
-				dprintf(2, "L%u: ", var.cont);
-				dprintf(2, "unknown instruction %s\n", lines[0]);
+				perror("L: ");
+				perror("unknown instruction\n");
 				exit(EXIT_FAILURE);
 			}
 			var.arg = strtok(NULL, " \t\n");

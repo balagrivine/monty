@@ -10,10 +10,8 @@
 
 void _queue(stack_t **head, unsigned int num)
 {
-	global_t var = {0};
 	(void)(*head);
 	(void)num;
-	(void)var;
 
 	var.lifo = 0;
 }
@@ -27,10 +25,8 @@ void _queue(stack_t **head, unsigned int num)
 
 void _stack(stack_t **head, unsigned int num)
 {
-	global_t var = {0};
-	(void)(*head);
+	(void)head;
 	(void)num;
-	(void)var;
 
 	var.lifo = 1;
 }
@@ -45,9 +41,7 @@ void _stack(stack_t **head, unsigned int num)
 void _add(stack_t **head, unsigned int num)
 {
 	int i;
-	stack_t *temp;
-
-	temp = NULL;
+	stack_t *temp = NULL;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -74,7 +68,7 @@ void _add(stack_t **head, unsigned int num)
 
 void _nop(stack_t **head, unsigned int num)
 {
-	(void)(*head);
+	(void)head;
 	(void)num;
 }
 

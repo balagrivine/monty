@@ -70,31 +70,33 @@ int main(int argc, char *argv[])
 
 	void (*f)(stack_t **stack, unsigned int num);
 	FILE *file;
-	size_t size = 256;
-	char *lines[2] = {NULL, NULL};
+	size_t len = 0;
+	char *lines = NULL;
+	char *instruct;
 
 	file = input(argc, argv);
 	start_var(file);
 
-	while (getline(&var.buffer, &size, file) != -1)
+	while (getline(&lines, &len, file) != -1)
 	{
-		lines[0] = strtok(var.buffer, " \t\n");
-		if (lines[0] && lines[0][0] != '#')
+		instruct = strtok(lines, " \t\n");
+		if (instruct && instruct[0] != '#')
 		{
-			f = get_opcode(lines[0]);
+			f = get_opcode(instruct);
 			if (!f)
 			{
 				fprintf(stderr, "L%u: ", var.cont);
-				fprintf(stderr, "unknown instruction %s\n", lines[0]);
+				fprintf(stderr, "unknown instruction %s\n", instruct);
 				free_var();
+				free(lines);
 				exit(EXIT_FAILURE);
 			}
 			var.arg = strtok(NULL, " \t\n");
 			f(&var.head, var.cont);
 		}
-		getline(&var.buffer, &size, file);
 		var.cont++;
 	}
 	free_var();
+	free(lines);
 	return (0);
 }

@@ -7,7 +7,7 @@
  * Return: pointer to the function that excutes the opcode passed to the program
  */
 
-void (*get_opcode(char *passed))(stack_t **head, unsigned int num)
+void (*get_opcode(char *passed))(stack_t **stack, unsigned int num)
 {
 	instruction_t instruction[] = {
 		{"push", _push},

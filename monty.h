@@ -43,7 +43,7 @@ typedef struct global_s
 {
 	int lifo;
 	unsigned int cont;
-	char  *arg;
+	char *arg;
 	stack_t *head;
 	FILE *fd;
 	char *buffer;

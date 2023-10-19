@@ -31,7 +31,6 @@ void start_var(FILE *fd)
 	var.fd = fd;
 	var.buffer = NULL;
 }
-
 /**
  * input - checks if file can be opened
  * @argc: number of arguments passed to th eprogram
@@ -57,7 +56,6 @@ FILE *input(int argc, char *argv[])
 	}
 	return (fd);
 }
-
 /**
  * main - entry point into the program
  * @argc: argument count

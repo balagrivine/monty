@@ -70,7 +70,6 @@ void _mul(stack_t **head, unsigned int num)
  * @num: line number
  * Return: nothing
  */
-
 void _mod(stack_t **head, unsigned int num)
 {
 	int i;
@@ -95,7 +94,6 @@ void _mod(stack_t **head, unsigned int num)
 	temp->n %= (*head)->n;
 	_pop(head, num);
 }
-
 /**
  * _pchar - prints the character value of the first element
  * @head: double pointer to the f=head of the list
@@ -127,7 +125,6 @@ void _pchar(stack_t **head, unsigned int num)
  * @num: line number
  * Return: nothing
  */
-
 void _pstr(stack_t **head, unsigned int num)
 {
 	stack_t *temp;

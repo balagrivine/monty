@@ -97,6 +97,6 @@ void _sub(stack_t **head, unsigned int num)
 	}
 
 	temp = (*head)->next;
-	temp->n = (*head)->n;
+	temp->n -= (*head)->n;
 	_pop(head, num);
 }

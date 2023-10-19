@@ -45,7 +45,6 @@ stack_t add_end(stack_t **head, const int n)
  * @n: data element to be added
  * Return: address of the new node
  */
-
 stack_t add_beginning(stack_t **head, const int n)
 {
 	stack_t *newNode;
@@ -77,7 +76,6 @@ stack_t add_beginning(stack_t **head, const int n)
  * @head: double pointer to the hed of the list
  * Return: nothing
  */
-
 void free_list(stack_t **head)
 {
 	stack_t *temp;

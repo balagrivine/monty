@@ -1,6 +1,20 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
+
+/**
+ * free_var - frees global variables
+ * Return: nothing
+ */
+
+void free_var(void)
+{
+	global_t var = {0};
+
+	free_list(&var.head);
+	free(var.buffer);
+	fclose(var.fd);
+}
 /**
  * start_var - initialize the global variables
  * @fd: pointer to the file descriptor to be opereted on
@@ -33,14 +47,14 @@ FILE *input(int argc, char *argv[])
 
 	if (argc == 1 || argc > 2)
 	{
-		perror("USAGE: monty file\n");
+		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
 
 	if (fd == NULL)
 	{
-		perror("Error: Can't open file\n");
+		dprintf(2, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	return (fd);
@@ -85,5 +99,6 @@ int main(int argc, char *argv[])
 		get_line = getline(&var.buffer, &size, file);
 		var.cont++;
 	}
+	free_var();
 	return (0);
 }

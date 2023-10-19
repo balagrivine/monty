@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
 /**
@@ -45,7 +46,6 @@ void _add(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
-	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -54,7 +54,8 @@ void _add(stack_t **head, unsigned int num)
 	}
 	if (i < 2)
 	{
-		perror("L: can't add, stack too short\n");
+		dprintf(2, "L%u: can't add, stack too short\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 	temp = (*head)->next;
@@ -86,7 +87,6 @@ void _sub(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
-	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -95,7 +95,8 @@ void _sub(stack_t **head, unsigned int num)
 	}
 	if (i < 2)
 	{
-		perror("L: can't sub, stack too short\n");
+		dprintf(2, "L%u: can't add, stack too short\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 

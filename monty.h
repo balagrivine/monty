@@ -81,5 +81,6 @@ void _rot1(stack_t **head, unsigned int num);
 void _rotr(stack_t **head, unsigned int num);
 
 void (*get_opcode(char *passed))(stack_t **stack, unsigned int num);
+void free_var(void);
 
 #endif

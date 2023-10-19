@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
 /**
@@ -11,7 +12,6 @@ void _div(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
-	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -20,12 +20,14 @@ void _div(stack_t **head, unsigned int num)
 	}
 	if (i < 2)
 	{
-		perror("L: can't div, stack too short\n");
+		fprintf(stderr, "L%u: can't div, stack too short\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 	if ((*head)->n == 0)
 	{
-		perror("L: division by zero\n");
+		fprintf(stderr, "L%u: division by zero\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 	temp = (*head)->next;
@@ -53,7 +55,8 @@ void _mul(stack_t **head, unsigned int num)
 
 	if (i < 2)
 	{
-		perror("L: can't mul, stack too short\n");
+		fprintf(stderr, "L%u: can't mul, stack too short\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 
@@ -73,18 +76,19 @@ void _mod(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
-	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
 	{
-		perror("L: can't mod, stack to short\n");
+		fprintf(stderr, "L%u: can't mod, stack to short\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*head)->n == 0)
 	{
-		perror("L: division by zero\n");
+		fprintf(stderr, "L%u: division by zero\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 
@@ -102,16 +106,17 @@ void _mod(stack_t **head, unsigned int num)
 
 void _pchar(stack_t **head, unsigned int num)
 {
-	(void)num;
 	if (*head == NULL)
 	{
-		perror("L: can't pchar, stack empty\n");
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*head)->n < 0 || (*head)->n > 127)
 	{
-		perror("L: can't pchar, value out of range\n");
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", (*head)->n);

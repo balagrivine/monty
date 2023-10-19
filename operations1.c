@@ -54,7 +54,7 @@ void _add(stack_t **head, unsigned int num)
 	}
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't add, stack too short\n", num);
+		fprintf(stderr, "L%u: can't add, stack too short\n", num);
 		free_var();
 		exit(EXIT_FAILURE);
 	}
@@ -95,7 +95,7 @@ void _sub(stack_t **head, unsigned int num)
 	}
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't add, stack too short\n", num);
+		fprintf(stderr, "L%u: can't add, stack too short\n", num);
 		free_var();
 		exit(EXIT_FAILURE);
 	}

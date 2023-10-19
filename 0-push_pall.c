@@ -12,11 +12,10 @@ void _push(stack_t **head, unsigned int num)
 	int i, j;
 	global_t var = {0};
 
-	(void)num;
 
 	if (var.arg == NULL)
 	{
-		perror("L: usage: push integer\n");
+		fprintf(stderr, "L%u: usage: push integer\n", num);
 		exit(EXIT_FAILURE);
 	}
 
@@ -24,7 +23,7 @@ void _push(stack_t **head, unsigned int num)
 	{
 		if (!isdigit(var.arg[i]) && var.arg[i] != '-')
 		{
-			perror("L: usage: push integer\n");
+			fprintf(stderr, "L%u: usage: push integer\n", num);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -71,7 +70,7 @@ void _pint(stack_t **head, unsigned int num)
 
 	if (*head == NULL)
 	{
-		perror("L: can't pint, stack empty\n");
+		fprintf(stderr, "L%u: can't pint, stack empty\n", num);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*head)->n);
@@ -92,7 +91,7 @@ void _pop(stack_t **head, unsigned int num)
 
 	if (*head == NULL)
 	{
-		perror("L: can't pop an empty stack\n");
+		fprintf(stderr, "L%u: can't pop an empty stack\n", num);
 		exit(EXIT_FAILURE);
 	}
 	temp = *head;
@@ -121,7 +120,7 @@ void _swap(stack_t **head, unsigned int num)
 
 	if (i < 2)
 	{
-		perror("L: can't swap, stack too short");
+		fprintf(stderr, "L%u: can't swap, stack too short", num);
 		exit(EXIT_FAILURE);
 	}
 	temp = *head;

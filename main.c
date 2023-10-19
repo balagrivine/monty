@@ -47,14 +47,14 @@ FILE *input(int argc, char *argv[])
 
 	if (argc == 1 || argc > 2)
 	{
-		dprintf(2, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
 
 	if (fd == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	return (fd);
@@ -89,8 +89,9 @@ int main(int argc, char *argv[])
 			f = get_opcode(lines[0]);
 			if (!f)
 			{
-				perror("L: ");
-				perror("unknown instruction\n");
+				fprintf(stderr, "L%u: ", var.cont);
+				fprintf(stderr, "unknown instruction %s\n", lines[0]);
+				free_var();
 				exit(EXIT_FAILURE);
 			}
 			var.arg = strtok(NULL, " \t\n");

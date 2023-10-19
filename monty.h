@@ -16,7 +16,6 @@
  * @n: integer
  * @prev: points to the previous element of the stack (or queue)
  * @next: points to the next element of the stack (or queue)
- *
  * Description: head linked list node structure
  * for stack, queues, LIFO, FIFO
  */
@@ -35,7 +34,6 @@ typedef struct stack_s
  * @head: head linked list
  * @fd: file descriptor
  * @buffer: input text
- *
  * Description: head linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
  */
@@ -82,5 +80,4 @@ void _rotr(stack_t **head, unsigned int num);
 
 void (*get_opcode(char *passed))(stack_t **head, unsigned int num);
 void free_var(void);
-
 #endif

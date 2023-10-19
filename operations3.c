@@ -7,7 +7,6 @@
  * @num: line number
  * Return: nothing
  */
-
 void _rot1(stack_t **head, unsigned int num)
 {
 	stack_t *temp1, *temp2;
@@ -43,7 +42,6 @@ void _rot1(stack_t **head, unsigned int num)
  * @num: line number
  * Return: nothing
  */
-
 void _rotr(stack_t **head, unsigned int num)
 {
 	stack_t *temp = NULL;

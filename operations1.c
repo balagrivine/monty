@@ -1,6 +1,5 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
-
 /**
  * _queue - sets the format of the data to a queue
  * @head: double pointer to the head of the list
@@ -15,7 +14,6 @@ void _queue(stack_t **head, unsigned int num)
 
 	var.lifo = 0;
 }
-
 /**
  * _stack - sets the format of the data to a stack
  * @head: double pointer to the head of the list
@@ -30,7 +28,6 @@ void _stack(stack_t **head, unsigned int num)
 
 	var.lifo = 1;
 }
-
 /**
  * _add - adds the top two elementsof the stack
  * @head: double pointer to the head of the stack
@@ -65,7 +62,6 @@ void _add(stack_t **head, unsigned int num)
  * @num: line number
  * Return: nothing
  */
-
 void _nop(stack_t **head, unsigned int num)
 {
 	(void)head;
@@ -78,7 +74,6 @@ void _nop(stack_t **head, unsigned int num)
  * @num: line number
  * Return: nothing
  */
-
 void _sub(stack_t **head, unsigned int num)
 {
 	int i;

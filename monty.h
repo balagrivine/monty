@@ -39,7 +39,7 @@ typedef struct stack_s
  * Description: head linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
  */
-typedef struct globals
+typedef struct global_s
 {
 	int lifo;
 	unsigned int cont;
@@ -80,7 +80,7 @@ void _pstr(stack_t **head, unsigned int num);
 void _rot1(stack_t **head, unsigned int num);
 void _rotr(stack_t **head, unsigned int num);
 
-void (*get_opcode(char *passed))(stack_t **stack, unsigned int num);
+void (*get_opcode(char *passed))(stack_t **head, unsigned int num);
 void free_var(void);
 
 #endif

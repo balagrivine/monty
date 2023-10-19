@@ -11,7 +11,7 @@
 void _div(stack_t **head, unsigned int num)
 {
 	int i;
-	stack_t *temp;
+	stack_t *temp = NULL;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -44,8 +44,7 @@ void _div(stack_t **head, unsigned int num)
 void _mul(stack_t **head, unsigned int num)
 {
 	int i;
-	stack_t *temp;
-	(void)num;
+	stack_t *temp = NULL;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
@@ -75,7 +74,7 @@ void _mul(stack_t **head, unsigned int num)
 void _mod(stack_t **head, unsigned int num)
 {
 	int i;
-	stack_t *temp;
+	stack_t *temp = NULL;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)

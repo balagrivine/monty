@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
+global_t var;
 
 /**
  * free_var - frees global variables
@@ -9,7 +10,6 @@
 
 void free_var(void)
 {
-	global_t var = {0};
 
 	free_list(&var.head);
 	free(var.buffer);
@@ -23,8 +23,6 @@ void free_var(void)
 
 void start_var(FILE *fd)
 {
-	global_t var = {0};
-	(void)var;
 
 	var.lifo = 1;
 	var.cont = 1;
@@ -69,21 +67,18 @@ FILE *input(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	global_t  var = {0};
 
 	void (*f)(stack_t **stack, unsigned int num);
 	FILE *file;
 	size_t size = 256;
-	size_t get_line = 0;
 	char *lines[2] = {NULL, NULL};
 
 	file = input(argc, argv);
 	start_var(file);
-	get_line = getline(&var.buffer, &size, file);
 
-	while (get_line != (size_t)EOF)
+	while (getline(&var.buffer, &size, file) != -1)
 	{
-		lines[0] = strtok(var.buffer, "\t\n");
+		lines[0] = strtok(var.buffer, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
 		{
 			f = get_opcode(lines[0]);
@@ -97,7 +92,7 @@ int main(int argc, char *argv[])
 			var.arg = strtok(NULL, " \t\n");
 			f(&var.head, var.cont);
 		}
-		get_line = getline(&var.buffer, &size, file);
+		getline(&var.buffer, &size, file);
 		var.cont++;
 	}
 	free_var();

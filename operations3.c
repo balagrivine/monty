@@ -46,7 +46,7 @@ void _rot1(stack_t **head, unsigned int num)
 
 void _rotr(stack_t **head, unsigned int num)
 {
-	stack_t *temp;
+	stack_t *temp = NULL;
 	(void)num;
 
 	temp = NULL;

@@ -47,6 +47,8 @@ void _add(stack_t **head, unsigned int num)
 	int i;
 	stack_t *temp;
 
+	temp = NULL;
+
 	temp = *head;
 	for (i = 0; temp != NULL; i++)
 	{
@@ -86,7 +88,7 @@ void _nop(stack_t **head, unsigned int num)
 void _sub(stack_t **head, unsigned int num)
 {
 	int i;
-	stack_t *temp;
+	stack_t *temp = NULL;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)

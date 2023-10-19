@@ -10,31 +10,32 @@
 void _push(stack_t **head, unsigned int num)
 {
 	int i, j;
-	global_t var = {0};
 
 
-	if (var.arg == NULL)
+	if (!var.arg)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", num);
+		free_var();
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; var.arg[i] != '\0'; i++)
+	for (j = 0; var.arg[j] != '\0'; j++)
 	{
-		if (!isdigit(var.arg[i]) && var.arg[i] != '-')
+		if (!isdigit(var.arg[j]) && var.arg[j] != '-')
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", num);
+			free_var();
 			exit(EXIT_FAILURE);
 		}
 	}
-	j = atoi(var.arg);
+	i = atoi(var.arg);
 
 	if (var.lifo == 1)
 	{
-		add_beginning(head, j);
+		add_beginning(head, i);
 	}
 	else
-		add_end(head, j);
+		add_end(head, i);
 }
 
 /**
@@ -66,7 +67,6 @@ void _pall(stack_t **head, unsigned int num)
 
 void _pint(stack_t **head, unsigned int num)
 {
-	(void)num;
 
 	if (*head == NULL)
 	{
@@ -87,7 +87,6 @@ void _pint(stack_t **head, unsigned int num)
 void _pop(stack_t **head, unsigned int num)
 {
 	stack_t *temp;
-	(void)num;
 
 	if (*head == NULL)
 	{
@@ -110,7 +109,6 @@ void _swap(stack_t **head, unsigned int num)
 {
 	int i;
 	stack_t *temp;
-	(void)num;
 
 	temp = *head;
 	for (i = 0; temp != NULL; i++)

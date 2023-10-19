@@ -33,7 +33,7 @@ stack_t add_end(stack_t **head, const int n)
 	{
 		temp = temp->next;
 	}
-	newNode->next = NULL;
+	newNode->next = temp->next;
 	newNode->prev = temp;
 	temp->next = newNode;
 	return (*newNode);
@@ -65,9 +65,9 @@ stack_t add_beginning(stack_t **head, const int n)
 		(*head) = newNode;
 		return (*newNode);
 	}
+	(*head)->prev = newNode;
 	newNode->next = (*head);
 	newNode->prev = NULL;
-	(*head)->prev = newNode;
 	(*head) = newNode;
 
 	return (*newNode);
